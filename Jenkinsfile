@@ -32,20 +32,19 @@ pipeline {
         }
 
         // ── 2. Lint & Validate ───────────────────────────────────
-        stage('Lint') {
-            steps {
-                echo "🔍 Linting project..."
-                sh '''
-                    node --version
-                    npm --version
-                    npm install
-                    npx --yes node . &
-                    sleep 3
-                    kill %1 2>/dev/null || true
-                '''
-            }
-        }
-
+stage('Lint') {
+    tools {
+        nodejs 'NodeJS-20'
+    }
+    steps {
+        echo "🔍 Linting project..."
+        sh '''
+            node --version
+            npm --version
+            npm install
+        '''
+    }
+}
         // ── 3. Build Docker Image ────────────────────────────────
         stage('Build') {
             steps {
