@@ -395,6 +395,96 @@ p { color: var(--text-muted); margin-bottom: 1rem; }
 .form-status.success { color: var(--accent); }
 .form-status.error { color: var(--accent3); }
 
+/* ── RESUME ──────────────────────────────────────────────────── */
+.resume-section { background: var(--bg2); }
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 64px;
+}
+
+.resume-col-title {
+  font-size: 1rem; font-weight: 700;
+  margin-bottom: 28px; letter-spacing: .02em;
+  color: var(--text);
+}
+
+/* Timeline */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 16px;
+  padding-bottom: 32px;
+  position: relative;
+}
+.tl-item:not(:last-child) .tl-dot::after {
+  content: '';
+  position: absolute;
+  left: 7px; top: 16px;
+  width: 2px;
+  height: calc(100% - 16px);
+  background: var(--border);
+}
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg2);
+  box-shadow: 0 0 0 3px rgba(0,255,136,.2);
+  margin-top: 4px;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+}
+.tl-date {
+  font-family: var(--font-mono); font-size: .7rem;
+  color: var(--accent2); display: block; margin-bottom: 6px;
+}
+.tl-content h4 {
+  font-size: .95rem; font-weight: 700;
+  margin-bottom: 6px; color: var(--text);
+}
+.tl-content p { font-size: .85rem; margin: 0; }
+
+/* Skills list */
+.resume-skills-list { display: flex; flex-direction: column; gap: 10px; }
+.rs-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .88rem; color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+.rs-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+
+/* Download block */
+.resume-download {
+  text-align: center;
+  padding: 48px 32px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+}
+.resume-download p { margin-bottom: 20px; font-size: 1rem; }
+.resume-download .btn { display: inline-flex; margin: 0 auto; }
+.resume-note {
+  margin-top: 16px !important;
+  font-family: var(--font-mono);
+  font-size: .72rem !important;
+  color: var(--text-muted) !important;
+}
+.resume-note code {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 4px; padding: 2px 6px;
+  color: var(--accent2);
+}
+
+@media (max-width: 900px) {
+  .resume-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);
