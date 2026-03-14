@@ -79,49 +79,39 @@ stage('Lint') {
         }
 
         // ── 5. Smoke Test ────────────────────────────────────────
-        stage('Smoke Test') {
-            steps {
-                echo "🧪 Running container smoke test..."
-                sh """
-                    # Start test container
-			docker run -d \
-    --name portfolio-test-${env.BUILD_NUMBER} \
-    -p 3099:3000 \
-    --health-cmd 'wget -qO- http://localhost:3000/health || exit 1' \
-    --health-interval=5s \
-    --health-retries=3 \
-    --health-start-period=20s \
-    ${IMAGE_NAME}:${env.BUILD_NUMBER}
-                    # Wait for healthy state
-                    echo "Waiting for container to be healthy..."
-                    for i in \$(seq 1 12); do
-                        STATUS=\$(docker inspect --format='{{.State.Health.Status}}' portfolio-test-${env.BUILD_NUMBER} 2>/dev/null || echo "unknown")
-                        echo "  Attempt \$i: \$STATUS"
-                        [ "\$STATUS" = "healthy" ] && break
-                        [ \$i -eq 12 ] && echo "Container never became healthy!" && exit 1
-                        sleep 5
-                    done
+stage('Smoke Test') {
+    steps {
+        echo "🧪 Running container smoke test..."
+        sh """
+            # Start test container (no healthcheck flag)
+            docker run -d \
+                --name portfolio-test-${env.BUILD_NUMBER} \
+                -p 3099:3000 \
+                ${IMAGE_NAME}:${env.BUILD_NUMBER}
 
-                    # HTTP health check
-                    HTTP_CODE=\$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3099/health)
-                    echo "Health endpoint returned: \$HTTP_CODE"
-                    [ "\$HTTP_CODE" = "200" ] || (echo "Health check failed!" && exit 1)
+            # Wait for app to boot
+            echo "Waiting 15s for app to start..."
+            sleep 15
 
-                    # Check root page
-                    HTTP_CODE=\$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3099/)
-                    echo "Root page returned: \$HTTP_CODE"
-                    [ "\$HTTP_CODE" = "200" ] || (echo "Root page check failed!" && exit 1)
+            # HTTP health check
+            HTTP_CODE=\$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3099/health)
+            echo "Health endpoint returned: \$HTTP_CODE"
+            [ "\$HTTP_CODE" = "200" ] || (echo "Health check failed!" && exit 1)
 
-                    echo "✅ Smoke tests passed!"
-                """
-            }
-            post {
-                always {
-                    sh "docker rm -f portfolio-test-${env.BUILD_NUMBER} 2>/dev/null || true"
-                }
-            }
+            # Check root page
+            HTTP_CODE=\$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3099/)
+            echo "Root page returned: \$HTTP_CODE"
+            [ "\$HTTP_CODE" = "200" ] || (echo "Root page check failed!" && exit 1)
+
+            echo "✅ Smoke tests passed!"
+        """
+    }
+    post {
+        always {
+            sh "docker rm -f portfolio-test-${env.BUILD_NUMBER} 2>/dev/null || true"
         }
-
+    }
+}
         // ── 6. Push to Registry ──────────────────────────────────
         stage('Push') {
             when {
