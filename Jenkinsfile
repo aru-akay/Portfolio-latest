@@ -84,14 +84,14 @@ stage('Lint') {
                 echo "🧪 Running container smoke test..."
                 sh """
                     # Start test container
-                    docker run -d \
-                        --name portfolio-test-${env.BUILD_NUMBER} \
-                        -p 3099:3000 \
-                        --health-cmd="wget -qO- http://localhost:3000/health || exit 1" \
-                        --health-interval=5s \
-                        --health-retries=3 \
-                        ${IMAGE_NAME}:${env.BUILD_NUMBER}
-
+			docker run -d \
+    --name portfolio-test-${env.BUILD_NUMBER} \
+    -p 3099:3000 \
+    --health-cmd 'wget -qO- http://localhost:3000/health || exit 1' \
+    --health-interval=5s \
+    --health-retries=3 \
+    --health-start-period=20s \
+    ${IMAGE_NAME}:${env.BUILD_NUMBER}
                     # Wait for healthy state
                     echo "Waiting for container to be healthy..."
                     for i in \$(seq 1 12); do
