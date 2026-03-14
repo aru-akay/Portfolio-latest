@@ -29,16 +29,16 @@ window.addEventListener('scroll', () => {
 /* ── TERMINAL TYPEWRITER ─────────────────────────────────────── */
 const terminalBody = document.getElementById('terminalBody');
 const lines = [
-  { text: '$ kubectl get nodes', type: 'cmd', delay: 400 },
-  { text: 'NAME       STATUS   ROLES          AGE   VERSION', type: 'out', delay: 900 },
-  { text: 'master-01  Ready    control-plane  47d   v1.29.0', type: 'out', delay: 1100 },
-  { text: 'worker-01  Ready    worker         47d   v1.29.0', type: 'out', delay: 1200 },
-  { text: 'worker-02  Ready    worker         47d   v1.29.0', type: 'out', delay: 1300 },
-  { text: '$ terraform apply --auto-approve', type: 'cmd', delay: 2000 },
-  { text: 'Apply complete! 12 added, 0 changed, 0 destroyed.', type: 'ok', delay: 2800 },
-  { text: '$ docker build -t anand/portfolio:latest .', type: 'cmd', delay: 3600 },
-  { text: 'Successfully built 3f9a12bc  ✓', type: 'ok', delay: 4400 },
-  { text: '$', type: 'cursor', delay: 4800 },
+  { text: '$ docker build -t anand/portfolio:latest .', type: 'cmd', delay: 400 },
+  { text: 'Step 1/6 : FROM node:20-alpine', type: 'out', delay: 900 },
+  { text: 'Successfully built a3f91c2d  ✓', type: 'ok', delay: 1600 },
+  { text: '$ docker run -d -p 3000:3000 anand/portfolio:latest', type: 'cmd', delay: 2200 },
+  { text: 'Container started: 7f3b91e2d4a1', type: 'ok', delay: 2900 },
+  { text: '$ curl http://localhost:3000/health', type: 'cmd', delay: 3500 },
+  { text: '{"status":"ok","uptime":"12s"}', type: 'ok', delay: 4100 },
+  { text: '$ sudo systemctl reload nginx', type: 'cmd', delay: 4700 },
+  { text: 'nginx: configuration OK  ✓', type: 'ok', delay: 5200 },
+  { text: '$', type: 'cursor', delay: 5600 },
 ];
 
 const colorMap = { cmd: '#00ff88', out: '#8fa8c0', ok: '#00cfff', cursor: '#00ff88' };
