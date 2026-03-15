@@ -117,3 +117,22 @@ sudo nginx -t && sudo systemctl reload nginx
 |----------|---------|-------------|
 | `PORT` | `3000` | App listening port |
 | `NODE_ENV` | `development` | Node environment |
+
+## 🌍 Monitoring Architecture
+
+AWS EC2
+│
+├── Nginx
+│
+├── Docker
+│   ├── Portfolio App
+│   ├── Prometheus
+│   ├── Grafana
+│   ├── Alertmanager
+│   └── Jenkins
+|   └── Loki
+│
+├── Exporters
+│   ├── Node Exporter
+│   ├── cAdvisor
+│   └── Blackbox Exporter
