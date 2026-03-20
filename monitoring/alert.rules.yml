@@ -16,13 +16,13 @@ groups:
 
 # Alert: Portfolio app container stopped
 - alert: PortfolioAppDown
-  expr: absent(container_last_seen{name="portfolio-app"}) or container_last_seen{name="portfolio-app"} < (time() - 60)
+  expr: absent(container_memory_usage_bytes{name="portfolio-app"})
   for: 30s
   labels:
     severity: critical
   annotations:
     summary: "🔴 Portfolio App Container is DOWN"
-    description: "The portfolio-app Docker container has stopped or is not responding."
+    description: "The portfolio-app Docker container has stopped."
 
       # Alert: Jenkins container stopped
       - alert: JenkinsDown
