@@ -3,17 +3,30 @@ global:
   evaluation_interval: 15s
   external_labels:
     monitor: 'anand-portfolio-monitor'
+    environment: 'production'
 
+# ── Alertmanager Connection ────────────────────────────────────────
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# ── Alert Rules ───────────────────────────────────────────────────
+rule_files:
+  - /etc/prometheus/alert.rules.yml
+
+# ── Scrape Configs ────────────────────────────────────────────────
 scrape_configs:
 
-  # ── Prometheus itself ──────────────────────────────────────────
+  # Prometheus itself
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
         labels:
           service: 'prometheus'
 
-  # ── Node Exporter (EC2 server metrics) ────────────────────────
+  # Node Exporter — EC2 server metrics
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
@@ -21,7 +34,7 @@ scrape_configs:
           service: 'node-exporter'
           instance: 'aws-ec2'
 
-  # ── cAdvisor (Docker container metrics) ───────────────────────
+  # cAdvisor — Docker container metrics
   - job_name: 'cadvisor'
     static_configs:
       - targets: ['cadvisor:8080']
