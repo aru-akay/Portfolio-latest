@@ -14,15 +14,15 @@ groups:
           summary: "🔴 Instance DOWN: {{ $labels.instance }}"
           description: "{{ $labels.job }} target {{ $labels.instance }} has been down for more than 1 minute."
 
-      # Alert: Portfolio app container stopped
-      - alert: PortfolioAppDown
-        expr: absent(container_last_seen{name="portfolio-app"})
-        for: 30s
-        labels:
-          severity: critical
-        annotations:
-          summary: "🔴 Portfolio App Container is DOWN"
-          description: "The portfolio-app Docker container has stopped or is not responding."
+# Alert: Portfolio app container stopped
+- alert: PortfolioAppDown
+  expr: absent(container_last_seen{name="portfolio-app"}) or container_last_seen{name="portfolio-app"} < (time() - 60)
+  for: 30s
+  labels:
+    severity: critical
+  annotations:
+    summary: "🔴 Portfolio App Container is DOWN"
+    description: "The portfolio-app Docker container has stopped or is not responding."
 
       # Alert: Jenkins container stopped
       - alert: JenkinsDown

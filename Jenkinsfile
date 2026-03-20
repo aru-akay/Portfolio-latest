@@ -163,7 +163,7 @@ pipeline {
                 curl -s -X POST https://api.telegram.org/bot8786417723:AAH9zfU9RXr3JzTkgSl9_r14Qldw7T1zZV8/sendMessage \
                 -H 'Content-Type: application/json' \
                 -d '{
-                    "chat_id": "695217286",
+                    "chat_id": "1082509918",
                     "text": "✅ Build #${env.BUILD_NUMBER} PASSED\\n\\n🚀 Portfolio deployed successfully\\n📦 Image: akay077/portfolio:${env.BUILD_NUMBER}\\n🌐 Site: https://www.anandevops.xyz",
                     "parse_mode": "HTML"
                 }' || true
@@ -176,7 +176,7 @@ pipeline {
                 curl -s -X POST https://api.telegram.org/bot8786417723:AAH9zfU9RXr3JzTkgSl9_r14Qldw7T1zZV8/sendMessage \
                 -H 'Content-Type: application/json' \
                 -d '{
-                    "chat_id": "695217286",
+                    "chat_id": "1082509918",
                     "text": "❌ Build #${env.BUILD_NUMBER} FAILED\\n\\n🔴 Pipeline failed on portfolio deploy\\n🔍 Check Jenkins: http://13.205.29.112:8080",
                     "parse_mode": "HTML"
                 }' || true
