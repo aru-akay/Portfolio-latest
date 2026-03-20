@@ -2,7 +2,7 @@ const http = require('http');
 const https = require('https');
 
 const BOT_TOKEN = '8786417723:AAH9zfU9RXr3JzTkgSl9_r14Qldw7T1zZV8';
-const CHAT_ID   = '695217286';
+const CHAT_ID   = '1082509918';
 const PORT      = 8080;
 
 // ── Send message to Telegram ──────────────────────────────────────
