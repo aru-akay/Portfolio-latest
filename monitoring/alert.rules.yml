@@ -1,107 +1,53 @@
 groups:
-
-  # ── Instance / Container Alerts ───────────────────────────────
   - name: instance_alerts
     rules:
-
-      # Alert: Any scrape target goes DOWN
       - alert: InstanceDown
         expr: up == 0
         for: 1m
         labels:
           severity: critical
         annotations:
-          summary: "🔴 Instance DOWN: {{ $labels.instance }}"
-          description: "{{ $labels.job }} target {{ $labels.instance }} has been down for more than 1 minute."
+          summary: "Instance DOWN"
+          description: "{{ $labels.job }} target {{ $labels.instance }} is down."
 
-# Alert: Portfolio app container stopped
-- alert: PortfolioAppDown
-  expr: absent(container_memory_usage_bytes{name="portfolio-app"})
-  for: 30s
-  labels:
-    severity: critical
-  annotations:
-    summary: "🔴 Portfolio App Container is DOWN"
-    description: "The portfolio-app Docker container has stopped."
-
-      # Alert: Jenkins container stopped
-      - alert: JenkinsDown
-        expr: absent(container_last_seen{name="jenkins"})
-        for: 1m
+      - alert: PortfolioAppDown
+        expr: absent(container_memory_usage_bytes{name="portfolio-app"})
+        for: 30s
         labels:
-          severity: warning
+          severity: critical
         annotations:
-          summary: "⚠️ Jenkins Container is DOWN"
-          description: "The Jenkins CI/CD container has stopped."
+          summary: "Portfolio App is DOWN"
+          description: "The portfolio-app container has stopped."
 
-  # ── CPU Alerts ────────────────────────────────────────────────
   - name: cpu_alerts
     rules:
-
-      # Alert: High CPU usage on EC2
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
         for: 2m
         labels:
           severity: warning
         annotations:
-          summary: "⚠️ High CPU Usage on EC2"
-          description: "CPU usage is above 80% for more than 2 minutes. Current value: {{ $value | printf \"%.1f\" }}%"
+          summary: "High CPU Usage"
+          description: "CPU above 80%. Value {{ $value | printf \"%.1f\" }}%"
 
-      # Alert: Critical CPU usage
-      - alert: CriticalCPUUsage
-        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 95
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "🔴 CRITICAL CPU Usage on EC2"
-          description: "CPU usage is above 95%! Current value: {{ $value | printf \"%.1f\" }}%"
-
-  # ── Memory Alerts ─────────────────────────────────────────────
   - name: memory_alerts
     rules:
-
-      # Alert: High RAM usage
       - alert: HighMemoryUsage
         expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 85
         for: 2m
         labels:
           severity: warning
         annotations:
-          summary: "⚠️ High Memory Usage on EC2"
-          description: "RAM usage is above 85%. Current value: {{ $value | printf \"%.1f\" }}%"
+          summary: "High Memory Usage"
+          description: "RAM above 85%. Value {{ $value | printf \"%.1f\" }}%"
 
-      # Alert: Critical RAM usage
-      - alert: CriticalMemoryUsage
-        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 95
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "🔴 CRITICAL Memory Usage on EC2"
-          description: "RAM usage is above 95%! Server may become unresponsive. Current value: {{ $value | printf \"%.1f\" }}%"
-
-  # ── Disk Alerts ───────────────────────────────────────────────
   - name: disk_alerts
     rules:
-
-      # Alert: Disk space running low
       - alert: LowDiskSpace
         expr: (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) * 100 > 80
         for: 5m
         labels:
           severity: warning
         annotations:
-          summary: "⚠️ Low Disk Space on EC2"
-          description: "Disk usage is above 80%. Current value: {{ $value | printf \"%.1f\" }}%"
-
-      # Alert: Critical disk space
-      - alert: CriticalDiskSpace
-        expr: (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) * 100 > 90
-        for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "🔴 CRITICAL Disk Space on EC2"
-          description: "Disk usage is above 90%! Current value: {{ $value | printf \"%.1f\" }}%"
+          summary: "Low Disk Space"
+          description: "Disk above 80%. Value {{ $value | printf \"%.1f\" }}%"
