@@ -28,7 +28,7 @@ router.get('/ready', (req, res) => {
 // ─── Live Metrics from Prometheus ─────────────────────────────────────────────
 function queryPrometheus(query) {
   return new Promise((resolve) => {
-    const url = `http://localhost:9090/api/v1/query?query=${encodeURIComponent(query)}`;
+    const url = `http://prometheus.anandevops.xyz/api/v1/query?query=${encodeURIComponent(query)}`;
     http.get(url, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
