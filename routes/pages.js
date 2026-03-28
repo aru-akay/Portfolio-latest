@@ -47,8 +47,8 @@ router.get('/api/metrics', async (req, res) => {
   try {
     const [cpu, ram, disk, containers] = await Promise.all([
       queryPrometheus('100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100)'),
-      queryPrometheus('(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100'),
-      queryPrometheus('(1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) * 100'),
+      queryPrometheus('(1 - (avg(node_memory_MemAvailable_bytes) / avg(node_memory_MemTotal_bytes))) * 100'),
+queryPrometheus('(1 - (avg(node_filesystem_avail_bytes{mountpoint="/"}) / avg(node_filesystem_size_bytes{mountpoint="/"}))) * 100'),
       queryPrometheus('count(container_last_seen{image!=""})'),
     ]);
     res.json({
