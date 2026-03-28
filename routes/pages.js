@@ -29,17 +29,42 @@ router.get('/ready', (req, res) => {
 function queryPrometheus(query) {
   return new Promise((resolve) => {
     const url = `http://prometheus.anandevops.xyz/api/v1/query?query=${encodeURIComponent(query)}`;
+
     http.get(url, (res) => {
       let data = '';
+
       res.on('data', chunk => data += chunk);
+
       res.on('end', () => {
         try {
           const json = JSON.parse(data);
-          const value = json?.data?.result?.[0]?.value?.[1];
-          resolve(value ? parseFloat(parseFloat(value).toFixed(1)) : null);
-        } catch { resolve(null); }
+
+          // 🔥 Debug log (remove later if you want)
+          console.log("PROM DATA:", JSON.stringify(json));
+
+          if (
+            json &&
+            json.data &&
+            json.data.result &&
+            json.data.result.length > 0
+          ) {
+            const value = json.data.result[0].value[1];
+            resolve(parseFloat(parseFloat(value).toFixed(1)));
+          } else {
+            console.log("⚠️ No data for query:", query);
+            resolve(null);
+          }
+
+        } catch (err) {
+          console.error("Parse error:", err);
+          resolve(null);
+        }
       });
-    }).on('error', () => resolve(null));
+
+    }).on('error', (err) => {
+      console.error("HTTP error:", err);
+      resolve(null);
+    });
   });
 }
 
