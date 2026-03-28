@@ -1,57 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Anand — Cloud & DevOps Engineer. Docker, Jenkins, AWS, Linux, Nginx, CI/CD." />
-  <title>Anand | Cloud & DevOps Engineer</title>
+  <meta name="description" content="Anand — Cloud & DevOps Engineer. Building resilient infrastructure on AWS." />
+  <title>Anand — Cloud & DevOps Engineer</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 
-  <div class="noise" aria-hidden="true"></div>
-
-  <!-- ── MODAL ─────────────────────────────────────────────────── -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-      <div class="modal-header">
-        <span class="modal-icon" id="modalIcon"></span>
-        <div>
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <p class="modal-subtitle" id="modalSubtitle"></p>
-        </div>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
-    </div>
-  </div>
-
   <!-- ── NAV ─────────────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
-        <span class="bracket">[</span>anand<span class="at">@</span>devops<span class="bracket">]$</span>
-      </a>
+      <a href="#hero" class="nav-logo">A<span class="nav-dot">.</span></a>
       <ul class="nav-links">
         <li><a href="#about">about</a></li>
         <li><a href="#skills">skills</a></li>
         <li><a href="#projects">projects</a></li>
-        <li><a href="#resume">resume</a></li>
+        <li><a href="#metrics">live</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
-      <!-- Theme Dots -->
-      <div class="theme-dots" aria-label="Theme switcher">
-        <button class="theme-dot" data-theme="dark"    title="Dark"    style="background:#00ff88"></button>
-        <button class="theme-dot" data-theme="light"   title="Light"   style="background:#e2e8f0;border:1px solid #ccc"></button>
-        <button class="theme-dot" data-theme="hacker"  title="Hacker"  style="background:#00ff00"></button>
-        <button class="theme-dot" data-theme="ocean"   title="Ocean"   style="background:#00cfff"></button>
-        <button class="theme-dot" data-theme="sunset"  title="Sunset"  style="background:#ff6b35"></button>
-        <button class="theme-dot" data-theme="minimal" title="Minimal" style="background:#333;border:2px solid #999"></button>
-      </div>
       <button class="burger" id="burger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -60,321 +37,272 @@
       <li><a href="#about">about</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#projects">projects</a></li>
-      <li><a href="#resume">resume</a></li>
+      <li><a href="#metrics">live</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
   </nav>
 
   <!-- ── HERO ─────────────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <div class="hero-badge">
-        <span class="pulse-dot"></span> Open to new opportunities
+    <div class="hero-left">
+      <div class="hero-label">
+        <span class="mono">Cloud &amp; DevOps Engineer</span>
+        <span class="hero-status"><span class="pulse"></span>Available</span>
       </div>
       <h1 class="hero-title">
-        <span>Cloud &amp;</span>
-        <span class="accent">DevOps</span>
-        <span>Engineer.</span>
+        <span class="glitch" data-text="Building">Building</span>
+        <em>Resilient</em>
+        <span class="glitch" data-text="Infrastructure">Infrastructure</span>
       </h1>
-      <p class="hero-desc">
-        Mechanical CAD Designer turned DevOps enthusiast — building automated CI/CD pipelines,
-        containerized applications, and scalable cloud infrastructure.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+      <p class="hero-desc">Mechanical CAD Designer turned DevOps enthusiast. Automating deployments, containerizing applications, and scaling systems that never sleep.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Work</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
-      <div class="terminal" aria-hidden="true">
-        <div class="terminal-topbar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <span class="terminal-label">anand@ubuntu — bash</span>
-        </div>
-        <div class="terminal-body" id="terminalBody"></div>
+      <div class="hero-stack mono">
+        <span>Docker</span>
+        <span class="sep">/</span>
+        <span>Jenkins</span>
+        <span class="sep">/</span>
+        <span>AWS</span>
+        <span class="sep">/</span>
+        <span>Nginx</span>
+        <span class="sep">/</span>
+        <span>Linux</span>
       </div>
     </div>
+    <div class="hero-right">
+      <div class="globe-wrap">
+        <canvas id="globe"></canvas>
+        <div class="globe-label mono">Tech Stack</div>
+      </div>
+    </div>
+    <div class="hero-scroll mono">scroll ↓</div>
   </section>
 
   <!-- ── ABOUT ─────────────────────────────────────────────────── -->
   <section class="section about" id="about">
-    <div class="container">
-      <p class="section-label">// 01 — about</p>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-title">From CAD Designs<br/><span class="accent">to Cloud Pipelines.</span></h2>
-          <p>I'm a Mechanical CAD Designer with a growing passion for DevOps and cloud technologies. I enjoy building automated deployment pipelines, containerized applications, and scalable infrastructure using tools like Docker, Jenkins, Linux, and Nginx.</p>
-          <p>Currently focused on hands-on DevOps projects involving CI/CD pipelines, cloud deployments, and infrastructure automation. Always eager to learn new technologies and contribute to building reliable, efficient systems.</p>
-          <div class="stats">
-            <div class="stat"><strong>2+</strong><span>Years DevOps</span></div>
-            <div class="stat"><strong>4+</strong><span>Projects Live</span></div>
-            <div class="stat"><strong>AWS</strong><span>EC2 / Cloud</span></div>
-            <div class="stat"><strong>Linux</strong><span>Daily Driver</span></div>
+    <div class="about-grid">
+      <div class="about-number">01</div>
+      <div class="about-content">
+        <h2 class="section-title">From CAD<br/><em>to Cloud.</em></h2>
+        <div class="about-body">
+          <p>I'm a Mechanical CAD Designer with a growing passion for DevOps and cloud technologies. I build automated deployment pipelines, containerized applications, and scalable infrastructure.</p>
+          <p>Currently focused on hands-on projects involving CI/CD pipelines, cloud deployments on AWS EC2, and full observability with Prometheus and Grafana.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-num glitch" data-text="2+">2+</span>
+            <span class="stat-label mono">Years DevOps</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num glitch" data-text="4+">4+</span>
+            <span class="stat-label mono">Live Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num glitch" data-text="8">8</span>
+            <span class="stat-label mono">Containers Running</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num glitch" data-text="99%">99%</span>
+            <span class="stat-label mono">Uptime SLA</span>
           </div>
         </div>
-        <div class="about-card">
-          <div class="card-header"><span class="prompt">$</span> cat profile.yaml</div>
-          <div class="yaml">
-            <div><span class="yk">name:</span> <span class="yv">Anand</span></div>
-            <div><span class="yk">role:</span> <span class="yv">Cloud &amp; DevOps Engineer</span></div>
-            <div><span class="yk">background:</span> <span class="yv">Mechanical CAD Designer</span></div>
-            <div><span class="yk">focus:</span></div>
-            <div class="indent"><span class="yli">- CI/CD Pipelines</span></div>
-            <div class="indent"><span class="yli">- Docker &amp; Containerization</span></div>
-            <div class="indent"><span class="yli">- Linux / Ubuntu Server</span></div>
-            <div class="indent"><span class="yli">- Cloud (AWS EC2)</span></div>
-            <div class="indent"><span class="yli">- Nginx &amp; HTTPS</span></div>
-            <div><span class="yk">tools:</span></div>
-            <div class="indent"><span class="yli">- Jenkins, GitHub</span></div>
-            <div class="indent"><span class="yli">- Bash scripting</span></div>
-            <div class="indent"><span class="yli">- Node.js, HTML/CSS/JS</span></div>
-            <div><span class="yk">status:</span> <span class="yv yv-green">available ✓</span></div>
-          </div>
+      </div>
+      <div class="about-terminal">
+        <div class="term-bar">
+          <span class="td r"></span><span class="td y"></span><span class="td g"></span>
+          <span class="mono term-title">anand@ubuntu</span>
         </div>
+        <div class="term-body" id="termBody"></div>
       </div>
     </div>
   </section>
 
   <!-- ── SKILLS ─────────────────────────────────────────────────── -->
   <section class="section skills" id="skills">
-    <div class="container">
-      <p class="section-label">// 02 — skills</p>
-      <h2 class="section-title">Tools I Work<br/><span class="accent">With Daily.</span></h2>
-      <p class="section-hint">Click any card to see details</p>
-      <div class="skills-grid">
-
-        <div class="skill-card clickable" data-id="skill-cicd">
-          <div class="sk-icon">⚡</div>
-          <h3>CI/CD</h3>
-          <div class="sk-tags"><span>Jenkins</span><span>GitHub Actions</span><span>Webhooks</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:85%"></div></div>
-          <span class="sk-pct">85%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-        <div class="skill-card clickable" data-id="skill-docker">
-          <div class="sk-icon">🐳</div>
-          <h3>Containerization</h3>
-          <div class="sk-tags"><span>Docker</span><span>Docker Compose</span><span>Dockerfile</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:90%"></div></div>
-          <span class="sk-pct">90%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-        <div class="skill-card clickable" data-id="skill-aws">
-          <div class="sk-icon">☁️</div>
-          <h3>Cloud — AWS</h3>
-          <div class="sk-tags"><span>EC2</span><span>Security Groups</span><span>SSH</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:75%"></div></div>
-          <span class="sk-pct">75%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-        <div class="skill-card clickable" data-id="skill-nginx">
-          <div class="sk-icon">🌐</div>
-          <h3>Web Server</h3>
-          <div class="sk-tags"><span>Nginx</span><span>Reverse Proxy</span><span>Certbot</span><span>Let's Encrypt</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:88%"></div></div>
-          <span class="sk-pct">88%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-        <div class="skill-card clickable" data-id="skill-linux">
-          <div class="sk-icon">🐧</div>
-          <h3>Linux / OS</h3>
-          <div class="sk-tags"><span>Ubuntu Server</span><span>Bash</span><span>SSH</span><span>CLI</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:88%"></div></div>
-          <span class="sk-pct">88%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-        <div class="skill-card clickable" data-id="skill-dev">
-          <div class="sk-icon">💻</div>
-          <h3>Development</h3>
-          <div class="sk-tags"><span>Node.js</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git</span></div>
-          <div class="sk-bar"><div class="sk-fill" style="--pct:80%"></div></div>
-          <span class="sk-pct">80%</span>
-          <span class="card-hint">Click for details →</span>
-        </div>
-
-      </div>
+    <div class="skills-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skill<br/><em>Tree.</em></h2>
+      <p class="section-sub mono">Hover nodes to explore</p>
+    </div>
+    <div class="skill-tree-wrap">
+      <svg id="skillTree" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="skill-tooltip" id="skillTooltip"></div>
     </div>
   </section>
 
   <!-- ── PROJECTS ─────────────────────────────────────────────────── -->
   <section class="section projects" id="projects">
-    <div class="container">
-      <p class="section-label">// 03 — projects</p>
-      <h2 class="section-title">Things I've<br/><span class="accent">Built &amp; Shipped.</span></h2>
-      <p class="section-hint">Click any card to see full details &amp; diagrams</p>
-      <div class="projects-grid">
+    <div class="projects-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Built &amp;<br/><em>Shipped.</em></h2>
+    </div>
+    <div class="projects-grid">
 
-        <div class="project-card featured clickable" data-id="proj-jenkins">
-          <div class="project-top">
-            <span class="project-badge">Featured</span>
-            <div class="project-links">
-              <a href="https://github.com/aru-akay" target="_blank" rel="noopener" aria-label="GitHub" class="icon-link" onclick="event.stopPropagation()">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3>Jenkins CI/CD Pipeline</h3>
-          <p>End-to-end automated deployment pipeline using Jenkins. Triggers on GitHub push, builds a Docker image, runs health checks, and deploys to an AWS EC2 instance — with Nginx as a reverse proxy and SSL via Certbot.</p>
-          <div class="project-stack">
-            <span>Jenkins</span><span>Docker</span><span>AWS EC2</span><span>Nginx</span><span>Bash</span><span>GitHub</span>
-          </div>
-          <span class="card-hint">Click for diagrams →</span>
+      <article class="proj-card proj-featured" data-index="01">
+        <div class="proj-meta mono">
+          <span class="proj-num">01</span>
+          <span class="proj-tag">Featured</span>
         </div>
-
-        <div class="project-card clickable" data-id="proj-portfolio">
-          <div class="project-top">
-            <span class="project-badge">Full Stack</span>
-            <div class="project-links">
-              <a href="https://github.com/aru-akay" target="_blank" rel="noopener" aria-label="GitHub" class="icon-link" onclick="event.stopPropagation()">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3>Portfolio App</h3>
-          <p>This portfolio — a Node.js + Express app containerized with Docker, deployed on AWS EC2, served through Nginx with HTTPS via Let's Encrypt, and auto-deployed via a Jenkins pipeline on every push.</p>
-          <div class="project-stack">
-            <span>Node.js</span><span>Docker</span><span>Nginx</span><span>AWS EC2</span><span>Jenkins</span>
-          </div>
-          <span class="card-hint">Click for diagrams →</span>
+        <h3 class="proj-title glitch" data-text="Jenkins CI/CD Pipeline">Jenkins CI/CD Pipeline</h3>
+        <p class="proj-desc">End-to-end automated deployment pipeline. GitHub push triggers Jenkins — builds Docker image, smoke tests, pushes to Docker Hub, deploys to AWS EC2 with auto-rollback on failure.</p>
+        <div class="proj-stack mono">
+          <span>Jenkins</span><span>Docker</span><span>AWS EC2</span><span>Nginx</span><span>Bash</span>
         </div>
+        <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="proj-link mono">github.com/aru-akay →</a>
+      </article>
 
-        <div class="project-card clickable" data-id="proj-travel">
-          <div class="project-top">
-            <span class="project-badge">Web App</span>
-            <div class="project-links">
-              <a href="https://github.com/aru-akay" target="_blank" rel="noopener" aria-label="GitHub" class="icon-link" onclick="event.stopPropagation()">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3>Travel Bucket List App</h3>
-          <p>A personalised travel diary web app with bucket list management, photo memories, and multi-user authentication with per-user data isolation. Built with Node.js and deployed via Docker on a Linux server.</p>
-          <div class="project-stack">
-            <span>Node.js</span><span>HTML/CSS/JS</span><span>Docker</span><span>Linux</span>
-          </div>
-          <span class="card-hint">Click for diagrams →</span>
+      <article class="proj-card" data-index="02">
+        <div class="proj-meta mono">
+          <span class="proj-num">02</span>
+          <span class="proj-tag">Full Stack</span>
         </div>
-
-        <div class="project-card clickable" data-id="proj-docker">
-          <div class="project-top">
-            <span class="project-badge">Infrastructure</span>
-            <div class="project-links">
-              <a href="https://github.com/aru-akay" target="_blank" rel="noopener" aria-label="GitHub" class="icon-link" onclick="event.stopPropagation()">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3>Dockerized App Deployment</h3>
-          <p>Full Docker-based deployment workflow on AWS EC2 — writing Dockerfiles, configuring multi-container setups with Docker Compose, managing networking, volumes, and exposing services securely through Nginx with SSL.</p>
-          <div class="project-stack">
-            <span>Docker</span><span>Docker Compose</span><span>AWS EC2</span><span>Nginx</span><span>Certbot</span>
-          </div>
-          <span class="card-hint">Click for diagrams →</span>
+        <h3 class="proj-title glitch" data-text="Portfolio App">Portfolio App</h3>
+        <p class="proj-desc">This site — Node.js + Express, Dockerized, deployed on AWS EC2 via Jenkins pipeline. Nginx reverse proxy with SSL. Live metrics from Prometheus.</p>
+        <div class="proj-stack mono">
+          <span>Node.js</span><span>Docker</span><span>Prometheus</span><span>Grafana</span>
         </div>
+        <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="proj-link mono">github.com/aru-akay →</a>
+      </article>
 
-      </div>
+      <article class="proj-card" data-index="03">
+        <div class="proj-meta mono">
+          <span class="proj-num">03</span>
+          <span class="proj-tag">Web App</span>
+        </div>
+        <h3 class="proj-title glitch" data-text="Travel Diary App">Travel Diary App</h3>
+        <p class="proj-desc">Personalised travel diary with bucket list, photo memories, and multi-user authentication. Per-user data isolation. Deployed via Docker on Linux server.</p>
+        <div class="proj-stack mono">
+          <span>Node.js</span><span>HTML/CSS/JS</span><span>Docker</span><span>Linux</span>
+        </div>
+        <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="proj-link mono">github.com/aru-akay →</a>
+      </article>
+
+      <article class="proj-card" data-index="04">
+        <div class="proj-meta mono">
+          <span class="proj-num">04</span>
+          <span class="proj-tag">Infrastructure</span>
+        </div>
+        <h3 class="proj-title glitch" data-text="Docker Deployment Stack">Docker Deployment Stack</h3>
+        <p class="proj-desc">Full Docker workflow on AWS EC2 — multi-stage Dockerfiles, Docker Compose, Nginx reverse proxy, SSL via Certbot. Complete monitoring with Prometheus + Grafana + Alertmanager.</p>
+        <div class="proj-stack mono">
+          <span>Docker Compose</span><span>Nginx</span><span>Certbot</span><span>Alertmanager</span>
+        </div>
+        <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="proj-link mono">github.com/aru-akay →</a>
+      </article>
+
     </div>
   </section>
 
-  <!-- ── RESUME ─────────────────────────────────────────────────── -->
-  <section class="section resume-section" id="resume">
-    <div class="container">
-      <p class="section-label">// 04 — resume</p>
-      <h2 class="section-title">My Background<br/><span class="accent">at a Glance.</span></h2>
-      <div class="resume-grid">
-        <div class="resume-col">
-          <h3 class="resume-col-title"><span class="accent">◆</span> Experience</h3>
-          <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-dot"></div>
-              <div class="tl-content">
-                <span class="tl-date">2022 — Present</span>
-                <h4>Mechanical CAD Designer</h4>
-                <p>Designing mechanical components and assemblies, applying engineering principles while growing expertise in DevOps tooling and cloud automation on the side.</p>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-dot"></div>
-              <div class="tl-content">
-                <span class="tl-date">2023 — Present</span>
-                <h4>DevOps Practitioner (Self-taught)</h4>
-                <p>Building hands-on DevOps skills through real projects — CI/CD with Jenkins, Docker deployments on AWS EC2, Nginx reverse proxy setup, SSL automation, and Linux server management.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="resume-col">
-          <h3 class="resume-col-title"><span class="accent">◆</span> What I Bring</h3>
-          <div class="resume-skills-list">
-            <div class="rs-item"><span class="rs-dot"></span>Dockerized application deployment</div>
-            <div class="rs-item"><span class="rs-dot"></span>Reverse proxy configuration (Nginx)</div>
-            <div class="rs-item"><span class="rs-dot"></span>Domain + HTTPS setup (Certbot / Let's Encrypt)</div>
-            <div class="rs-item"><span class="rs-dot"></span>CI/CD pipeline setup (Jenkins)</div>
-            <div class="rs-item"><span class="rs-dot"></span>Cloud server management (AWS EC2)</div>
-            <div class="rs-item"><span class="rs-dot"></span>Linux / Ubuntu server administration</div>
-            <div class="rs-item"><span class="rs-dot"></span>Bash scripting &amp; automation</div>
-            <div class="rs-item"><span class="rs-dot"></span>Git workflows &amp; version control</div>
-            <div class="rs-item"><span class="rs-dot"></span>SSH &amp; remote server debugging</div>
-            <div class="rs-item"><span class="rs-dot"></span>Node.js backend &amp; frontend development</div>
-          </div>
-        </div>
+  <!-- ── LIVE METRICS ──────────────────────────────────────────── -->
+  <section class="section metrics" id="metrics">
+    <div class="metrics-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Live<br/><em>Infrastructure.</em></h2>
+      <p class="section-sub mono">Real data from my AWS EC2 server — updated every 10 seconds</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card" id="mc-cpu">
+        <div class="metric-label mono">CPU Usage</div>
+        <div class="metric-value" id="mv-cpu">—</div>
+        <div class="metric-unit mono">percent</div>
+        <div class="metric-bar"><div class="metric-fill" id="mf-cpu"></div></div>
       </div>
-      <div class="resume-download">
-        <p>Want the full picture? Download my resume.</p>
-        <a href="/public/resume.pdf" download class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Resume (PDF)
-        </a>
-        <p class="resume-note">📁 Place your <code>resume.pdf</code> inside the <code>public/</code> folder to activate this button.</p>
+      <div class="metric-card" id="mc-ram">
+        <div class="metric-label mono">RAM Usage</div>
+        <div class="metric-value" id="mv-ram">—</div>
+        <div class="metric-unit mono">percent</div>
+        <div class="metric-bar"><div class="metric-fill" id="mf-ram"></div></div>
+      </div>
+      <div class="metric-card" id="mc-disk">
+        <div class="metric-label mono">Disk Usage</div>
+        <div class="metric-value" id="mv-disk">—</div>
+        <div class="metric-unit mono">percent</div>
+        <div class="metric-bar"><div class="metric-fill" id="mf-disk"></div></div>
+      </div>
+      <div class="metric-card" id="mc-cont">
+        <div class="metric-label mono">Containers</div>
+        <div class="metric-value" id="mv-cont">—</div>
+        <div class="metric-unit mono">running</div>
+        <div class="metric-bar"><div class="metric-fill" id="mf-cont" style="width:100%"></div></div>
+      </div>
+    </div>
+    <div class="metrics-footer mono" id="metricsFooter">Connecting to server...</div>
+  </section>
+
+  <!-- ── RESUME ─────────────────────────────────────────────────── -->
+  <section class="section resume-sec" id="resume">
+    <div class="resume-grid">
+      <div class="resume-left">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Background<br/><em>at a Glance.</em></h2>
+        <a href="/resume.pdf" download class="btn-primary">Download CV</a>
+      </div>
+      <div class="resume-right">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year mono">2023 — now</div>
+            <div class="tl-content">
+              <h4 class="glitch" data-text="DevOps Practitioner">DevOps Practitioner</h4>
+              <p>Self-taught. CI/CD with Jenkins, Docker on AWS EC2, Nginx, SSL, Prometheus + Grafana monitoring stack, Telegram alerting.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year mono">2022 — now</div>
+            <div class="tl-content">
+              <h4 class="glitch" data-text="Mechanical CAD Designer">Mechanical CAD Designer</h4>
+              <p>Designing mechanical components and assemblies. Engineering principles applied to software infrastructure thinking.</p>
+            </div>
+          </div>
+        </div>
+        <div class="skills-list mono">
+          <span>Docker & Compose</span><span>Jenkins CI/CD</span><span>AWS EC2</span>
+          <span>Nginx & SSL</span><span>Prometheus</span><span>Grafana</span>
+          <span>Alertmanager</span><span>Bash Scripting</span><span>Linux / Ubuntu</span>
+          <span>Node.js</span><span>Git & GitHub</span><span>SSH</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ── CONTACT ─────────────────────────────────────────────────── -->
   <section class="section contact" id="contact">
-    <div class="container">
-      <p class="section-label">// 05 — contact</p>
-      <h2 class="section-title">Let's Build<br/><span class="accent">Something Together.</span></h2>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p>Whether you're looking for a DevOps collaborator, have a project in mind, or just want to talk cloud and automation — I'd love to hear from you.</p>
-          <div class="contact-links">
-            <a href="mailto:mailtoanand24@gmail.com" class="contact-link">
-              <span class="cl-icon">✉️</span>
-              <span>Email me</span>
-            </a>
-            <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="contact-link">
-              <span class="cl-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-              </span>
-              <span>Vist GitHub Repository </span>
-            </a>
-            <a href="https://linkedin.com/in/akay077" target="_blank" rel="noopener" class="contact-link">
-              <span class="cl-icon">💼</span>
-              <span>Connect on LinkedLn 💼</span>
-            </a>
-          </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Let's<br/><em>Build.</em></h2>
+        <div class="contact-links">
+          <a href="mailto:mailtoanand24@gmail.com" class="contact-link mono">
+            <span class="cl-label">email</span>
+            <span class="cl-val glitch" data-text="mailtoanand24@gmail.com">mailtoanand24@gmail.com</span>
+          </a>
+          <a href="https://github.com/aru-akay" target="_blank" rel="noopener" class="contact-link mono">
+            <span class="cl-label">github</span>
+            <span class="cl-val glitch" data-text="aru-akay">aru-akay</span>
+          </a>
+          <a href="https://linkedin.com/in/akay077l" target="_blank" rel="noopener" class="contact-link mono">
+            <span class="cl-label">linkedin</span>
+            <span class="cl-val glitch" data-text="akay077l">akay077l</span>
+          </a>
         </div>
+      </div>
+      <div class="contact-right">
         <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+          <div class="form-row">
+            <label class="mono" for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          <div class="form-row">
+            <label class="mono" for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
           </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
+          <div class="form-row">
+            <label class="mono" for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Send Message</button>
-          <div class="form-status" id="formStatus" aria-live="polite"></div>
+          <button type="submit" class="btn-primary" id="submitBtn">Send Message</button>
+          <div class="form-status mono" id="formStatus"></div>
         </form>
       </div>
     </div>
@@ -382,9 +310,9 @@
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer class="footer">
-    <div class="container">
-      <p class="footer-logo"><span class="bracket">[</span>anand<span class="at">@</span>devops<span class="bracket">]$</span> <span class="cursor-blink">▋</span></p>
-      <p class="footer-copy">© 2026 Anand · Cloud &amp; DevOps Engineer · Built with Node.js · Containarized via Docker · Auto deploy CI/CD via Jenkins</p>
+    <div class="footer-inner">
+      <span class="mono footer-name">Anand — Cloud &amp; DevOps Engineer</span>
+      <span class="mono footer-copy">© 2026 · Built with Node.js · Deployed via Docker + Jenkins + AWS</span>
     </div>
   </footer>
 

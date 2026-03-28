@@ -70,7 +70,7 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_SECURITY_DISABLE_GRAVATAR=true
-      - GF_SERVER_ROOT_URL=https://www.anandevops.xyz/grafana
+      - GF_SERVER_ROOT_URL=https://grafana.anandevops.xyz
     networks:
       - monitoring-net
     depends_on:
