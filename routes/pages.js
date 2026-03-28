@@ -2,7 +2,7 @@
 
 const express = require('express');
 const path    = require('path');
-const http    = require('http');
+const https    = require('https');
 const router  = express.Router();
 
 // ─── Home ─────────────────────────────────────────────────────────────────────
@@ -28,9 +28,9 @@ router.get('/ready', (req, res) => {
 // ─── Live Metrics from Prometheus ─────────────────────────────────────────────
 function queryPrometheus(query) {
   return new Promise((resolve) => {
-    const url = `http://prometheus.anandevops.xyz/api/v1/query?query=${encodeURIComponent(query)}`;
+    const url = `https://prometheus.anandevops.xyz/api/v1/query?query=${encodeURIComponent(query)}`;
 
-    http.get(url, (res) => {
+    https.get(url, (res) => {
       let data = '';
 
       res.on('data', chunk => data += chunk);
